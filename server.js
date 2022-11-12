@@ -130,11 +130,12 @@ const resolvers = {
         .then((json) => json.data.movies);
     },
     movie(_, { id }) {
+      // 
       return fetch(
         `https://yts.torrentbay.to/api/v2/movie_details.json?movie_id=${id}`
       )
-        .then((res) => res.json())
-        .then((json) => json.data.movie);
+        .then((res) => res.json()) // 이 결과 데이터를 가진 프로미스가 반환된다
+        .then((json) => json.data.movie); // 앞의 결과 데이터를 파라미터로 하여 또다른 프로미스가 생성된다
     },
   },
   // Query resolvers에서도 push 등으로 Mutation이 가능하지만 개념적으로 나누기 위해
